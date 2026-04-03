@@ -1,165 +1,326 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang='pt-br'>
 <head>
-    <!-- Facebook Pixel Code --><script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js'); fbq('init', '1178200430929449'); fbq('track', 'PageView');</script><noscript> <img height="1" width="1" src="https://www.facebook.com/tr?id=1178200430929449&ev=PageView&noscript=1"/></noscript><!-- End Facebook Pixel Code -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal VIP - Curadoria de Entretenimento Digital</title>
+ <!-- Facebook Pixel Code --><script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js'); fbq('init', '1178200430929449'); fbq('track', 'PageView');</script><noscript> <img height="1" width="1" src="https://www.facebook.com/tr?id=1178200430929449&ev=PageView&noscript=1"/></noscript><!-- End Facebook Pixel Code -->
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Portal VIP - Elite Digital</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css'>
+    <link href='https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap' rel='stylesheet'>
     <style>
         :root {
             --gold: #d4af37;
-            --dark-bg: #0f1215;
-            --card-bg: #1a1e23;
-            --text-gray: #a0a0a0;
+            --gold-light: #f1d279;
+            --gold-dark: #996515;
+            --bg: #050505;
+            --card-bg: rgba(15, 15, 15, 0.7);
+            --text: #ffffff;
+            --text-dim: #a0a0a0;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            background-color: var(--dark-bg);
-            color: white;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            background: 
+                radial-gradient(at 0% 0%, rgba(212, 175, 55, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(30, 30, 30, 1) 0px, transparent 50%),
+                #050505;
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
             margin: 0;
-            padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
         header {
             text-align: center;
-            padding: 40px 20px;
-            max-width: 600px;
+            padding: 80px 20px 40px;
+            animation: fadeInDown 1s ease-out;
         }
 
-        h1 { color: var(--gold); font-size: 1.8rem; margin-bottom: 10px; }
-        p.subtitle { color: var(--text-gray); font-size: 0.9rem; line-height: 1.5; }
+        h1 {
+            font-weight: 900;
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin: 0;
+            background: linear-gradient(to bottom, var(--gold-light), var(--gold-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .subtitle {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            max-width: 500px;
+            margin: 20px auto;
+            line-height: 1.8;
+            letter-spacing: 1px;
+            font-weight: 300;
+        }
 
         .container {
-            width: 90%;
-            max-width: 500px;
-            padding-bottom: 50px;
+            width: 95%;
+            max-width: 450px;
+            z-index: 10;
         }
 
-        .experience-card {
+        .card {
             background: var(--card-bg);
-            border: 1px solid #333;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            transition: transform 0.2s;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 24px;
+            padding: 30px;
+            margin-bottom: 25px;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
         }
 
-        .experience-card:hover { border-color: var(--gold); }
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--gold);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(212, 175, 55, 0.15);
+        }
 
         .badge {
-            background: rgba(212, 175, 55, 0.1);
-            color: var(--gold);
-            padding: 4px 10px;
-            border-radius: 5px;
-            font-size: 0.7rem;
-            font-weight: bold;
+            display: inline-block;
+            background: linear-gradient(90deg, var(--gold-dark), transparent);
+            padding: 6px 15px;
+            border-radius: 50px;
+            font-size: 0.6rem;
+            font-weight: 700;
             text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
         }
 
-        h2 { font-size: 1.2rem; margin: 15px 0 10px 0; }
-        
-        .desc { font-size: 0.85rem; color: var(--text-gray); margin-bottom: 20px; }
+        h2 {
+            font-size: 1.4rem;
+            margin: 10px 0;
+            font-weight: 700;
+        }
 
-        .btn-main {
-            display: block;
-            background: var(--gold);
-            color: black;
-            text-align: center;
+        .info-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--gold-light);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .btn-prime {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            color: #000;
+            padding: 18px;
+            border-radius: 14px;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 900;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+            transition: 0.3s;
+            overflow: hidden;
+        }
+
+        .btn-prime:hover {
+            filter: brightness(1.1);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-prime::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.6), transparent);
+            transition: 0.5s;
+            animation: shimmer 3s infinite;
+        }
+
+        .btn-sec {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.05);
+            color: #fff;
             padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 10px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.3s;
         }
 
-        .btn-insta {
-            display: block;
+        .btn-sec:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: #e1306c;
+        }
+
+        .highlight-bar {
+            background: linear-gradient(90deg, #ff0000, #b20710);
+            padding: 20px;
+            border-radius: 20px;
             text-align: center;
-            text-decoration: none;
+            margin-top: 10px;
+            box-shadow: 0 0 30px rgba(178, 7, 16, 0.4);
+            cursor: pointer;
+        }
+
+        .highlight-bar a {
             color: white;
-            font-size: 0.8rem;
-            border: 1px solid #444;
-            padding: 8px;
-            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-size: 1.1rem;
         }
 
         footer {
-            text-align: center;
-            padding: 30px;
-            font-size: 0.75rem;
-            color: #666;
-            border-top: 1px solid #222;
+            background: #000;
+            padding: 60px 20px;
             width: 100%;
+            margin-top: 50px;
+            border-top: 1px solid #111;
         }
 
-        .warnings { color: #888; margin-top: 15px; font-weight: bold; }
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .age-limit {
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            display: inline-block;
+            padding: 10px 25px;
+            font-weight: 900;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .legal-text {
+            text-align: left;
+            color: #555;
+            font-size: 0.8rem;
+            line-height: 1.7;
+        }
+
+        .legal-text h3 {
+            color: #888;
+            font-size: 0.85rem;
+            margin-top: 30px;
+            text-transform: uppercase;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            20% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>🌑 Portal Oficial (Sexta-Feira)</h1>
-    <p class="subtitle">Análises detalhadas das plataformas mais estáveis e seguras de 2026. Conteúdo exclusivo para membros da comunidade.</p>
+    <h1>PORTAL OFICIAL (SEXTA-FEIRA)</h1>
+    <p class='subtitle'>Acesso exclusivo à infraestrutura digital de alta performance. Curadoria premium para resultados resilientes em 2026.</p>
 </header>
 
-<div class="container">
+<div class='container'>
 
-    <div class="experience-card">
-        <span class="badge">Alta Estabilidade</span>
-        <h2>Análise de Performance: Win.co</h2>
-        <p>Jogos: R$ 0,10 WG</p>
-        <p class="desc">Interface otimizada para dispositivos móveis com tempo de resposta imediato e suporte ativo.</p>
-        <a href="https://xwin45.com/?id=162926095" class="btn-main">ACESSAR PLATAFORMA OFICIAL</a>
-        <a href="https://www.instagram.com/27b_slots" class="btn-insta">Ver Comunidade no Instagram</a>
+    <div class='card'>
+        <span class='badge'>Xwin.co - Ultra Resiliente</span>
+        <h2>Infraestrutura Alpha r$0:10</h2>
+        <div class='info-row'><i class='fas fa-microchip'></i> Latência Zero | Ativo</div>
+        <a href='https://xwin45.com/?id=162926095' class='btn-prime'>Acessar Canal Seguro</a>
+        <a href='https://www.instagram.com/27b_slots?igsh=MWtrZjBwNThvdWRwaQ==' target='_blank' class='btn-sec'><i class='fab fa-instagram'></i> @27B_Slots</a>
     </div>
 
-    <div class="experience-card">
-        <span class="badge">Interface Premium</span>
-        <h2>Análise de Performance: 456Bet</h2>
-        <p>Jogos: R$ 0,10 WG</p>
-        <p class="desc">Sistema intuitivo focado em usabilidade e segurança de dados do usuário.</p>
-        <a href="https://www.bet660.com/?id=884888457" class="btn-main">ACESSAR PLATAFORMA OFICIAL</a>
-        <a href="https://www.instagram.com/8385_slots" class="btn-insta">Ver Comunidade no Instagram</a>
+    <div class='card'>
+        <span class='badge'>456Bet - High Performance</span>
+        <h2>Infraestrutura Sigma r$0:10</h2>
+        <div class='info-row'><i class='fas fa-shield-alt'></i> Criptografia End-to-End</div>
+        <a href='https://www.bet660.com/?id=884888457' class='btn-prime'>Acessar Canal Seguro</a>
+        <a href='https://www.instagram.com/8385_slots?igsh=bWVpNDNtY2o2Mzds' target='_blank' class='btn-sec'><i class='fab fa-instagram'></i> @8385_Slots</a>
     </div>
 
-    <div class="experience-card">
-        <span class="badge">Verificado 2026</span>
-        <h2>Análise de Performance: 0101Bet.com</h2>
-        <p>Jogos: R$ 0,10 WG</p>
-        <p class="desc">Recursos exclusivos de fidelidade e ambiente digital de alta performance.</p>
-        <a href="https://i0101bet.com/?id=204973193" class="btn-main">ACESSAR PLATAFORMA OFICIAL</a>
-        <a href="https://www.instagram.com/vip_345com" class="btn-insta">Ver Comunidade no Instagram</a>
+    <div class='card'>
+        <span class='badge'>0101bet.com - Verified</span>
+        <h2>Infraestrutura Delta r$0:10</h2>
+        <div class='info-row'><i class='fas fa-gem'></i> Fidelidade Premium</div>
+        <a href='https://i0101bet.com/?id=204973193' class='btn-prime'>Acessar Canal Seguro</a>
+        <a href='https://www.instagram.com/456b_et?igsh=eWZ3b3JhdGZhMHBh' target='_blank' class='btn-sec'><i class='fab fa-instagram'></i> @Vip_345com</a>
     </div>
 
+    <div class='highlight-bar'>
+        <a href='https://luiiisreis.github.io/streaminggratuita/?utm_medium=social&utm_source=heylink.me' target='_blank'>
+            <i class='fas fa-play-circle'></i> STREAMING GRATUITA
+        </a>
+    </div>
+
+<style>
+  .btn-insta-personalizado {
+    display: block;
+    text-align: center;
+    padding: 15px;
+    margin: 10px 0;
+    color: white !important;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 10px;
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  }
+</style>
+
+<a href="https://www.instagram.com/luiiis_reis?igsh=bzhvNmJ1Ym1rc3Fv" target="_blank" class="btn-insta-personalizado">
+   📸 @Luiiis_reis
+</a>
+
 </div>
-<div class="card-experiencia">
-    <a href="https://www.instagram.com/luiiireis?igsh=bzhvNmJ1Ym1rc3Fv" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
-        <i class="fab fa-instagram"></i>
-        <span>Instagram Pessoal</span>
-    </a>
-</div>
-    <div class="card-experiencia" style="background: linear-gradient(45deg, #e50914, #ff0000); border-radius: 8px; margin-top: 10px; box-shadow: 0 4px 15px rgba(229, 9, 20, 0.3);">
-    <a href="https://luiiisreis.github.io/streaminggratuita/?utm_medium=social&utm_source=heylink.me" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #ffffff; display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: bold; padding: 12px;">
-        <i class="fas fa-play-circle"></i>
-        <span>ACESSAR MINHA PLATAFORMA</span>
-    </a>
-</div>
+
 <footer>
-    <div class="warnings">🔞 PROIBIDO PARA MENORES DE 18 ANOS</div>
-    <p>Este portal é um agregador de análises para fins de entretenimento digital.<br>
-    Jogue com responsabilidade. © 2026 Portal VIP.</p>
-    <div>
-  <h3>Jogo Responsável e Isenção de Responsabilidade</h3>
-  <p>Este site atua apenas na divulgação de plataformas de jogos e apostas. Não incentivamos o jogo irresponsável. A participação é uma decisão pessoal e consciente, proibida para menores de 18 anos. Recomendamos sempre consultar os termos e condições de cada plataforma divulgada.</p>
+    <div class='footer-content'>
+        <div class='age-limit'>🔞 PROIBIDO PARA MENORES DE 18 ANOS</div>
+        
+        <div class='legal-text'>
+            <p style='text-align: center'>Este portal é um agregador de análises para fins de entretenimento digital. Jogue com responsabilidade. © 2026 Portal VIP.</p>
+            
+            <h3>Jogo Responsável e Isenção de Responsabilidade</h3>
+            <p>Este site atua apenas na divulgação de plataformas de jogos e apostas. Não incentivamos o jogo irresponsável. A participação é uma decisão pessoal e consciente, proibida para menores de 18 anos. Recomendamos sempre consultar os termos e condições de cada plataforma divulgada.</p>
 
-  <h3>Direitos Autorais</h3>
-  <p>&copy; 2026 [luiiisreis]. Todos os direitos reservados. É proibida a reprodução total ou parcial do conteúdo deste site sem autorização prévia por escrito.</p>
-</div>
-
+            <h3>Direitos Autorais</h3>
+            <p>&copy; 2026 [luiiis_reis]. Todos os direitos reservados. É proibida a reprodução total ou parcial do conteúdo deste site sem autorização prévia por escrito.</p>
+        </div>
+    </div>
 </footer>
 
 </body>
